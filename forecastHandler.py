@@ -6,11 +6,23 @@ from bs4 import BeautifulSoup
 import requests as r
 import pandas as pd
 
-class FallsHandler():
+class ThredboHandler():
     # class to handle all falls related function calls
 
     def __init__(self):
-        return None
+        self.thredbo_endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
+        self.headers = ["date", "max_temp", "min_temp", "snow_at_1800m", "snow_at_1400m", "snow_at_1000m", "weather"]
+
+    def getForecast(self):
+        # makes call to current thredbo forecast data
+
+        resp = r.get(self.thredbo_endpoint)
+        if resp.status_code != 200:
+            print("Error occured on get")
+            return None
+        
+        else:
+            return BeautifulSoup(resp.text)
 
 class PerisherHandler() :
     # class to handle all perisher related function calls
@@ -18,7 +30,7 @@ class PerisherHandler() :
     def __init__(self):
 
         self.perisher_endpoint = 'https://www.perisher.com.au/reports-cams/reports/weather-forecast'
-        self.headers = ["Date", "Weather", "Prob. of precip", "Likely snow", "Snow level", "Wind", "Visibility"]
+        self.headers = ["date", "weather", "prob_of_precip", "likely_snow", "snow_level", "wind", "visibility"]
 
     def getForecast(self):
         # makes call to current perisher forecast data
@@ -73,8 +85,8 @@ class PerisherHandler() :
         # intended to accept a parsed perisher forecast, cleans columns and appends meta data on pipeline run
 
         # clean headers
-        cleaned_headers = {c: c.strip().lower().replace(" ", "_").replace(".", "") for c in list(df)} 
-        df.rename(columns = cleaned_headers, inplace = True)
+        # cleaned_headers = {c: c.strip().lower().replace(" ", "_").replace(".", "") for c in list(df)} 
+        # df.rename(columns = cleaned_headers, inplace = True)
 
         # convert likely snow to numeric
         df['likely_snow_numeric'] = df['likely_snow'].apply(lambda x: self._getNormalizedLikelySnow(x))
