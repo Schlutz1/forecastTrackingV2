@@ -1,17 +1,21 @@
-# Handles all interactions required to source and manage data
+# Handles all db interactions
 
+import sqlite3
+import os
 
-class perisherHandler(self) :
-    # class to handle all perisher related function calls
+class cacheHandler():
+    # use to this handle interactions with local html caches
+    # primarily used for testing, encapsulte here to make pretty
+    # TODO: use this class?
 
-    def getCurrentForecastData(self):
-        # makes call to current perisher forecast data
-
+    def __init__(self):
         return None
-    
+
 class databaseHandler(self):
     # class to handle all interactions with DB
     # TODO: understand best method on AWS to do this
+
+    # self.conn = sqlite3.connect(os.path.join)
 
     def writeForecastData(self, forecast_data):
         # writes scrapped forecast data to database
