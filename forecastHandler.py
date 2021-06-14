@@ -25,7 +25,7 @@ class BaseForecastHandler():
             return None
         
         else:
-            return BeautifulSoup(resp.text)
+            return BeautifulSoup(resp.text, features = 'html.parser')
 
 
     def getForecast(self, load_from_cache):
