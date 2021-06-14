@@ -13,15 +13,8 @@ import os
 cache_path = os.path.join('.', 'cache')
 
 
-class ThredboHandler():
-    # class to handle all falls related function calls
-
-    def __init__(self):
-
-        self._id = "ThredboHandler"
-        self. forecast_cache_file = 'thredbo_forecast_cache.html'
-        self.endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
-        self.headers = ["date", "max_temp", "min_temp", "snow_at_1800m", "snow_at_1400m", "snow_at_1000m", "weather"]
+class BaseForecastHandler():
+    # abstract base class for other endpoint specific forecast handlers
 
     def _callEndpoint(self):
         # makes actual get request
@@ -53,7 +46,18 @@ class ThredboHandler():
 
         return forecast_soup
 
-class PerisherHandler() :
+class ThredboHandler(BaseForecastHandler):
+    # class to handle all thredbo related function calls
+
+    def __init__(self):
+
+        self._id = "ThredboHandler"
+        self. forecast_cache_file = 'thredbo_forecast_cache.html'
+        self.endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
+        self.headers = ["date", "max_temp", "min_temp", "snow_at_1800m", "snow_at_1400m", "snow_at_1000m", "weather"]
+
+
+class PerisherHandler(BaseForecastHandler) :
     # class to handle all perisher related function calls
 
     def __init__(self):
@@ -63,35 +67,6 @@ class PerisherHandler() :
         self.endpoint = 'https://www.perisher.com.au/reports-cams/reports/weather-forecast'
         self.headers = ["date", "weather", "prob_of_precip", "likely_snow", "snow_level", "wind", "visibility"]
 
-    def _callEndpoint(self):
-        # makes actual get request
-
-        resp = r.get(self.endpoint)
-        if resp.status_code != 200:
-            print("Error occured on get")
-            return None
-        
-        else:
-            return BeautifulSoup(resp.text)
-
-    def getForecast(self, load_from_cache):
-        # makes call to current perisher forecast data
-        # get current forecast data, optionally load from cache
-
-        if load_from_cache:
-            print(self._id, ": Loading forecast from cache")
-            with open(os.path.join(cache_path, self.forecast_cache_file), 'r') as f:
-                contents = f.read()
-                forecast_soup = BeautifulSoup(contents, 'html.parser')
-
-        else :
-            print(self._id, ": Loading forecast from site, writing to cache")
-            forecast_soup = perisherHandler.getForecast()
-
-            with open(os.path.join(cache_path, self.forecast_cache_file), "w") as f:
-                f.write(str(forecast_soup))
-
-        return forecast_soup
 
     def parseForecast(self, forecast_soup) -> pd.DataFrame():        
         # parses blob into dataframe
