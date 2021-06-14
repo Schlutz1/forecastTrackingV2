@@ -1,7 +1,7 @@
 # Handles all forecast data interactions
 
 # libs
-from datetime import datetime
+from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
 import requests as r
@@ -29,7 +29,8 @@ class BaseForecastHandler():
 
 
     def getForecast(self, load_from_cache):
-        # makes call to current thredbo forecast data
+        # makes call to some forecast endpoint
+        # optionally loads data from cache, use for testing
 
         if load_from_cache:
             print(self._id, ": Loading forecast from cache")
@@ -56,6 +57,53 @@ class ThredboHandler(BaseForecastHandler):
         self.endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
         self.headers = ["date", "max_temp", "min_temp", "snow_at_1800m", "snow_at_1400m", "snow_at_1000m", "weather"]
 
+    def parseForecast(self, forecast_soup) -> pd.DataFrame():
+        
+        parsed = []
+        for block_counter, forecast_block in enumerate(forecast_soup.find_all("div", class_ = "forecast-block")):
+
+            # extract data from soup
+            date = forecast_block.find("div", class_="date").get_text()
+            temps = forecast_block.find("div", class_="data temperature")
+            temp_list = [temp.get_text(strip = True) for temp in temps.find_all("div")]
+
+            weather = forecast_block.find("p").get_text()
+
+            # update dict with extracted data
+            row_dict = {
+                'date' : date,
+                'max_temp' : temp_list[0],
+                'min_temp' : temp_list[1],
+                'weather' : weather
+            }
+
+            snows = forecast_block.find("div", class_="data snow-chance snow-heights-3")
+            
+            if pd.notnull(snows):
+                snow_list = [
+                    snow.get_text(strip = True) for snow in snows.find_all("div")
+                ]
+                row_dict.update({
+                    'snow_at_1800m' : snow_list[0],
+                    'snow_at_1400m' : snow_list[1],
+                    'snow_at_1000m' : snow_list[2]
+                })
+
+            parsed.append(row_dict)
+        
+        df_parsed_forecast = pd.DataFrame(parsed)
+        return(df_parsed_forecast)
+
+
+    def cleanForecast(self, df):
+        # cleans parsed forecast data, and appends some standard meta-data
+
+        # append meta-data
+        df['endpoint'] = self._id
+        df['forecast_type'] = '7-day'
+        df['extracted_date'] = datetime.now()
+
+        return df
 
 class PerisherHandler(BaseForecastHandler) :
     # class to handle all perisher related function calls
@@ -117,9 +165,9 @@ class PerisherHandler(BaseForecastHandler) :
         df['forecast_date'] = df['date'].apply(lambda x: datetime.strptime(x + ' 2021', '%a%b %d %Y'))
         
         # # append meta-data
-        df['extracted_date'] = datetime.now()
-        df['resort'] = 'Perisher'
+        df['endpoint'] = self._id
         df['forecast_type'] = '14-day'
+        df['extracted_date'] = datetime.now()
 
         return df
     

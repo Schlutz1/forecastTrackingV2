@@ -2,6 +2,7 @@
 
 # imports
 from forecastHandler import PerisherHandler, ThredboHandler
+from dataHandler import DatabaseHandler
 from bs4 import BeautifulSoup
 
 import pandas as pd
@@ -11,30 +12,37 @@ import os
 
 # globals
 _id = 'pipeline.py'
-load_from_cache = True # use this for testing
-
+load_from_cache = False # use this for testing
+databaseHandler = DatabaseHandler()
 
 ### Thredbo forecast interactions
 thredboHandler = ThredboHandler()
 
 # get current forecast data, optionally load from cache
 forecast_soup = thredboHandler.getForecast(load_from_cache)
-print(forecast_soup.find("title").get_text())
+df_parsed_forecast = thredboHandler.parseForecast(forecast_soup)
+df_cleaned_forecast = thredboHandler.cleanForecast(df_parsed_forecast)
 
+# store locally
+databaseHandler.writeForecastData(
+    df_cleaned_forecast,
+    'thredbo'
+)
 
 
 ### Perisher forecast interactions
 perisherHandler = PerisherHandler()
 forecast_soup = perisherHandler.getForecast(load_from_cache)
-print(forecast_soup.find("span", class_="report-heading--text").get_text())
 
-# # parse forecast soup
-# df_parsed_forecast = perisherHandler.parseForecast(forecast_soup)
+# parse forecast soup
+df_parsed_forecast = perisherHandler.parseForecast(forecast_soup)
 
-# # clean forecast & append meta-data
-# df_cleaned_forecast = perisherHandler.cleanForecast(df_parsed_forecast)
-# df_cleaned_forecast.to_sql(
-#     name = 'perisher',
-#     con = conn, 
-#     if_exists = 'append'
-# )
+# clean forecast & append meta-data
+df_cleaned_forecast = perisherHandler.cleanForecast(df_parsed_forecast)
+
+# store locally
+databaseHandler.writeForecastData(
+    df_cleaned_forecast,
+    'perisher'
+)
+
