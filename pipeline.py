@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 import pandas as pd
 import sqlite3
+import sys
 import os
 
 
@@ -14,6 +15,8 @@ import os
 _id = 'pipeline.py'
 load_from_cache = False # use this for testing
 databaseHandler = DatabaseHandler()
+databaseHandler.exportForecastData()
+sys.exit()
 
 ### Thredbo forecast interactions
 thredboHandler = ThredboHandler()
