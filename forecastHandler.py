@@ -3,45 +3,95 @@
 # libs
 from datetime import datetime
 from bs4 import BeautifulSoup
+
 import requests as r
 import pandas as pd
+
+import os
+
+# paths
+cache_path = os.path.join('.', 'cache')
+
 
 class ThredboHandler():
     # class to handle all falls related function calls
 
     def __init__(self):
-        self.thredbo_endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
+
+        self._id = "ThredboHandler"
+        self. forecast_cache_file = 'thredbo_forecast_cache.html'
+        self.endpoint = 'https://www.thredbo.com.au/weather/weather-report/'
         self.headers = ["date", "max_temp", "min_temp", "snow_at_1800m", "snow_at_1400m", "snow_at_1000m", "weather"]
 
-    def getForecast(self):
-        # makes call to current thredbo forecast data
+    def _callEndpoint(self):
+        # makes actual get request
 
-        resp = r.get(self.thredbo_endpoint)
+        resp = r.get(self.endpoint)
         if resp.status_code != 200:
             print("Error occured on get")
             return None
         
         else:
             return BeautifulSoup(resp.text)
+
+
+    def getForecast(self, load_from_cache):
+        # makes call to current thredbo forecast data
+
+        if load_from_cache:
+            print(self._id, ": Loading forecast from cache")
+            with open(os.path.join(cache_path, self.forecast_cache_file), 'r', encoding="utf-8") as f:
+                contents = f.read()
+                forecast_soup = BeautifulSoup(contents, 'html.parser')
+
+        else :
+            print(self._id, ": Loading forecast from site, writing to cache")
+            forecast_soup = self._callEndpoint()
+
+            with open(os.path.join(cache_path, self.forecast_cache_file), "w", encoding="utf-8") as f:
+                f.write(str(forecast_soup))
+
+        return forecast_soup
 
 class PerisherHandler() :
     # class to handle all perisher related function calls
 
     def __init__(self):
 
-        self.perisher_endpoint = 'https://www.perisher.com.au/reports-cams/reports/weather-forecast'
+        self._id = "PerisherHandler"
+        self.forecast_cache_file = 'perisher_forecast_cache.html'
+        self.endpoint = 'https://www.perisher.com.au/reports-cams/reports/weather-forecast'
         self.headers = ["date", "weather", "prob_of_precip", "likely_snow", "snow_level", "wind", "visibility"]
 
-    def getForecast(self):
-        # makes call to current perisher forecast data
+    def _callEndpoint(self):
+        # makes actual get request
 
-        resp = r.get(self.perisher_endpoint)
+        resp = r.get(self.endpoint)
         if resp.status_code != 200:
             print("Error occured on get")
             return None
         
         else:
             return BeautifulSoup(resp.text)
+
+    def getForecast(self, load_from_cache):
+        # makes call to current perisher forecast data
+        # get current forecast data, optionally load from cache
+
+        if load_from_cache:
+            print(self._id, ": Loading forecast from cache")
+            with open(os.path.join(cache_path, self.forecast_cache_file), 'r') as f:
+                contents = f.read()
+                forecast_soup = BeautifulSoup(contents, 'html.parser')
+
+        else :
+            print(self._id, ": Loading forecast from site, writing to cache")
+            forecast_soup = perisherHandler.getForecast()
+
+            with open(os.path.join(cache_path, self.forecast_cache_file), "w") as f:
+                f.write(str(forecast_soup))
+
+        return forecast_soup
 
     def parseForecast(self, forecast_soup) -> pd.DataFrame():        
         # parses blob into dataframe
@@ -83,10 +133,6 @@ class PerisherHandler() :
 
     def cleanForecast(self, df):
         # intended to accept a parsed perisher forecast, cleans columns and appends meta data on pipeline run
-
-        # clean headers
-        # cleaned_headers = {c: c.strip().lower().replace(" ", "_").replace(".", "") for c in list(df)} 
-        # df.rename(columns = cleaned_headers, inplace = True)
 
         # convert likely snow to numeric
         df['likely_snow_numeric'] = df['likely_snow'].apply(lambda x: self._getNormalizedLikelySnow(x))

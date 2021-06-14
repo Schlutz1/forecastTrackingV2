@@ -1,7 +1,12 @@
 # Handles all db interactions
 
+# libraries
 import sqlite3
 import os
+
+# paths
+cache_path = os.path.join('.', 'cache')
+db = 'catch.db'
 
 class cacheHandler():
     # use to this handle interactions with local html caches
@@ -9,7 +14,7 @@ class cacheHandler():
     # TODO: use this class?
 
     def __init__(self):
-        return None
+        self.conn = sqlite3.connect(os.path.join(cache_path, db))
 
 class databaseHandler(self):
     # class to handle all interactions with DB
