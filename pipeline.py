@@ -15,8 +15,7 @@ import os
 _id = 'pipeline.py'
 load_from_cache = False # use this for testing
 databaseHandler = DatabaseHandler()
-databaseHandler.exportForecastData()
-sys.exit()
+
 
 ### Thredbo forecast interactions
 thredboHandler = ThredboHandler()
@@ -49,3 +48,6 @@ databaseHandler.writeForecastData(
     'perisher'
 )
 
+
+### Generate final export
+databaseHandler.exportForecastData()

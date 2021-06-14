@@ -64,16 +64,20 @@ class ThredboHandler(BaseForecastHandler):
 
             # extract data from soup
             date = forecast_block.find("div", class_="date").get_text()
+            weather = forecast_block.find("p").get_text()
+
             temps = forecast_block.find("div", class_="data temperature")
             temp_list = [temp.get_text(strip = True) for temp in temps.find_all("div")]
 
-            weather = forecast_block.find("p").get_text()
+            min_temp = None
+            if len(temp_list) > 1:
+                min_temp = temp_list[1]
 
             # update dict with extracted data
             row_dict = {
                 'date' : date,
                 'max_temp' : temp_list[0],
-                'min_temp' : temp_list[1],
+                'min_temp' : min_temp,
                 'weather' : weather
             }
 

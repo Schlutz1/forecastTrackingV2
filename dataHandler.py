@@ -18,6 +18,7 @@ class DatabaseHandler():
     # TODO: understand best method on AWS to do this
 
     def __init__(self):
+        self._id = "databaseHandler"
         self.conn = sqlite3.connect(os.path.join(cache_path, db))
 
     def writeForecastData(self, df, table):
@@ -40,7 +41,8 @@ class DatabaseHandler():
 
     def exportForecastData(self):
         # updates files in export, for backing up on github / where-ever
-        
+        print(self._id, ": Exporting forecast from cache")
+
         tables = pd.read_sql(
             '''
             SELECT name FROM sqlite_master WHERE type="table";
