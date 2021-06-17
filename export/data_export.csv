@@ -19,6 +19,12 @@ index,date,max_temp,min_temp,weather,snow_at_1800m,snow_at_1400m,snow_at_1000m,e
 4,"Saturday, 19 Jun",Max 1°C,Min -1°C,Cloudy. High (80%) chance of snow showers. Winds south to southeasterly 35 to 55 km/h.,,,,ThredboHandler,7-day,2021-06-15 08:41:14.258665,,,,,,,
 5,"Sunday, 20 Jun",Max 2°C,Min -3°C,Partly cloudy. Slight (20%) chance of a shower. Winds south to southeasterly 20 to 30 km/h shifting north to northwesterly 15 to 20 km/h later.,,,,ThredboHandler,7-day,2021-06-15 08:41:14.258665,,,,,,,
 6,"Monday, 21 Jun",Max 3°C,Min -5°C,Mostly sunny. Winds northwest to northeasterly 15 to 20 km/h tending northeast to southeasterly 15 to 25 km/h during the day.,,,,ThredboHandler,7-day,2021-06-15 08:41:14.258665,,,,,,,
+0,"Tomorrow, 18 Jun",Max 0°C,Min -3°C,"Cloudy. Very high (95%) chance of snow, most likely from the late morning. Winds westerly 25 to 35 km/h turning south to southwesterly 35 to 50 km/h in the late morning and early afternoon.",1800m 80%,1400m 40%,1000m 0%,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
+1,"Saturday, 19 Jun",Max 1°C,Min -1°C,"Cloudy. Very high (90%) chance of snow showers, most likely in the morning and afternoon. Winds southerly 35 to 55 km/h.",1800m 70%,1400m 30%,1000m 0%,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
+2,"Sunday, 20 Jun",Max 1°C,Min -2°C,Partly cloudy. Slight (20%) chance of a snow shower. Winds south to southeasterly 25 to 40 km/h decreasing to 15 to 25 km/h during the morning then becoming light during the afternoon.,1800m 20%,1400m 10%,1000m 0%,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
+3,"Monday, 21 Jun",Max 3°C,Min -5°C,Mostly sunny. Light winds.,,,,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
+4,"Tuesday, 22 Jun",Max 2°C,Min -6°C,Partly cloudy. Winds northerly 15 to 25 km/h.,,,,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
+5,"Wednesday, 23 Jun",Max 2°C,Min -4°C,"Partly cloudy. Medium (40%) chance of snow showers, most likely later in the day. Winds northerly 25 to 35 km/h.",,,,ThredboHandler,7-day,2021-06-17 11:44:03.926967,,,,,,,
 0,SunJun 13,,,Mostly cloudy. Possible snow showers,,,,PerisherHandler,14-day,2021-06-13 12:01:32.493321,40%,<2cm,1600,NW,Poor,2,2021-06-13 00:00:00
 1,MonJun 14,,,Mostly cloudy. Possible snow showers,,,,PerisherHandler,14-day,2021-06-13 12:01:32.493321,30%,<2cm,1600,SE to N,Fair,2,2021-06-14 00:00:00
 2,TueJun 15,,,Mostly sunny,,,,PerisherHandler,14-day,2021-06-13 12:01:32.493321,10%,Nil,,NW/NE,Good,0,2021-06-15 00:00:00
@@ -61,3 +67,17 @@ index,date,max_temp,min_temp,weather,snow_at_1800m,snow_at_1400m,snow_at_1000m,e
 11,SatJun 26,,,Mostly cloudy. Snow,,,,PerisherHandler,14-day,2021-06-15 08:41:16.048155,70%,5-10cm,1200,NW,Poor,7.5,2021-06-26 00:00:00
 12,SunJun 27,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-15 08:41:16.048155,50%,<2cm,1200,NW,Fair,2,2021-06-27 00:00:00
 13,MonJun 28,,,Snow showers clearing,,,,PerisherHandler,14-day,2021-06-15 08:41:16.048155,40%,<2cm,1300,Fresh NW,Improving,2,2021-06-28 00:00:00
+0,ThuJun 17,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,85%,2-5cm,1300,Fresh NW,Fair,3.5,2021-06-17 00:00:00
+1,FriJun 18,,,Mostly cloudy. Snow showers. Breezy,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,90%,5-10cm,1300,Fresh SW,Fair,7.5,2021-06-18 00:00:00
+2,SatJun 19,,,Mostly cloudy. Snow showers. Windy,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,75%,2-5cm,1400,Strong S,Good,3.5,2021-06-19 00:00:00
+3,SunJun 20,,,Snow showers clearing. Sunnier,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,30%,<2cm,1600,Fresh SE,Good,2,2021-06-20 00:00:00
+4,MonJun 21,,,Mostly sunny,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,5%,Nil,,SW  to NE,Excellent,0,2021-06-21 00:00:00
+5,TueJun 22,,,Mostly sunny,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,25%,Nil,,NW/N,Excellent,0,2021-06-22 00:00:00
+6,WedJun 23,,,Mostly cloudy,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,85%,Nil,,N,Good,0,2021-06-23 00:00:00
+7,ThuJun 24,,,Cloudy. Snow,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,90%,5-10cm,900,NE,Poor,7.5,2021-06-24 00:00:00
+8,FriJun 25,,,Cloudy. Snow,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,90%,10-20cm,1200,SW  to E,Fair,15.0,2021-06-25 00:00:00
+9,SatJun 26,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,60%,2-5cm,1100,SW,Fair,3.5,2021-06-26 00:00:00
+10,SunJun 27,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,60%,<2cm,1100,W,Good,2,2021-06-27 00:00:00
+11,MonJun 28,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,40%,<2cm,1200,NW,Good,2,2021-06-28 00:00:00
+12,TueJun 29,,,Mostly cloudy. Snow showers,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,50%,<2cm,1100,Fresh NW,Good,2,2021-06-29 00:00:00
+13,WedJun 30,,,Snow showers clearing. Sunnier,,,,PerisherHandler,14-day,2021-06-17 11:44:05.095549,50%,<2cm,1100,NW,Improving,2,2021-06-30 00:00:00
