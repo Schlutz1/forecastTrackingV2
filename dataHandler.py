@@ -21,14 +21,32 @@ class DatabaseHandler():
         self._id = "databaseHandler"
         self.conn = sqlite3.connect(os.path.join(cache_path, db))
 
-    def writeForecastData(self, df, table):
-        # writes scrapped forecast data to database
+    def appendForecastData(self, df, table):
+        # appends scrapped forecast data to database
         
         df.to_sql(
             name = table,
             con = self.conn,
             if_exists = 'append'
         )
+
+    def overwriteForecastData(self, df, table, overwrite_bool = False):
+        # overwrites table in db
+        # :param df: dataframe to write
+        # :param table: table to write to
+        # :param overwrite_bool: boolean, set to True to confirm overwrite
+        
+        if (overwrite_bool):
+            print(f"{self._id}: Warning, overwrote {table} table")
+
+            df.to_sql(
+                name = table,
+                con = self.conn,
+                if_exists = 'replace'
+            )
+        
+        else:
+            print(f"{self._id}: Warning, did not overwrite {table} table")
 
     def getForecastData(self, table, min_date = None, max_date = None):
         # returns forecast data, optionally with a selected range
@@ -37,11 +55,19 @@ class DatabaseHandler():
         # :param (optional) max_date: maximum date to select from
             # if no timeframe specified, defaults to all data
 
-        return None
+        df_table = pd.read_sql(
+            f'''
+            SELECT *
+            FROM {table}
+            ''',
+            self.conn
+        )
+
+        return df_table
 
     def exportForecastData(self):
         # updates files in export, for backing up on github / where-ever
-        print(self._id, ": Exporting forecast from cache")
+        print(f"{self._id}: Exporting forecast from cache")
 
         tables = pd.read_sql(
             '''

@@ -47,6 +47,7 @@ class BaseForecastHandler():
 
         return forecast_soup
 
+
 class ThredboHandler(BaseForecastHandler):
     # class to handle all thredbo related function calls
 
@@ -102,12 +103,21 @@ class ThredboHandler(BaseForecastHandler):
     def cleanForecast(self, df):
         # cleans parsed forecast data, and appends some standard meta-data
 
+        # convert date to datetime object
+        df['forecast_date'] = df['date'].apply(lambda x: datetime.strptime(x.split(", ")[1] + ' 2021', '%d %b %Y'))
+
+        # get snow level forecasts
+        df['snow_at_1800m_percent'] = df['snow_at_1800m'].apply(lambda x: x.split("1800m ")[1].split("%")[0] if pd.notnull(x) else x) 
+        df['snow_at_1400m_percent'] = df['snow_at_1400m'].apply(lambda x: x.split("1400m ")[1].split("%")[0] if pd.notnull(x) else x) 
+        df['snow_at_1000m_percent'] = df['snow_at_1000m'].apply(lambda x: x.split("1000m ")[1].split("%")[0] if pd.notnull(x) else x) 
+
         # append meta-data
         df['endpoint'] = self._id
         df['forecast_type'] = '7-day'
         df['extracted_date'] = datetime.now()
 
         return df
+
 
 class PerisherHandler(BaseForecastHandler) :
     # class to handle all perisher related function calls
@@ -165,7 +175,6 @@ class PerisherHandler(BaseForecastHandler) :
         df['likely_snow_numeric'] = df['likely_snow'].apply(lambda x: self._getNormalizedLikelySnow(x))
 
         # # convert date to datetime object
-        datetime.strptime('FriJun 20', '%a%b %d')
         df['forecast_date'] = df['date'].apply(lambda x: datetime.strptime(x + ' 2021', '%a%b %d %Y'))
         
         # # append meta-data

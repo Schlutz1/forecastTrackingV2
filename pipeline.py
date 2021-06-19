@@ -13,9 +13,26 @@ import os
 
 # globals
 _id = 'pipeline.py'
-load_from_cache = False # use this for testing
+load_from_cache = True # use this for testing
 databaseHandler = DatabaseHandler()
 
+
+pipeline_config = {
+    "thredbo": {
+        "handler": ThredboHandler(),
+        "table": "thredbo"
+    },
+    "perisher": {
+        "handler": PerisherHandler(),
+        "table": "perisher"
+    }
+}
+
+
+# for endpoint, config in pipeline_config.items():
+
+#     # define handler
+#     handler = config['handler']
 
 ### Thredbo forecast interactions
 thredboHandler = ThredboHandler()
@@ -25,8 +42,8 @@ forecast_soup = thredboHandler.getForecast(load_from_cache)
 df_parsed_forecast = thredboHandler.parseForecast(forecast_soup)
 df_cleaned_forecast = thredboHandler.cleanForecast(df_parsed_forecast)
 
-# store locally
-databaseHandler.writeForecastData(
+# # store locally
+databaseHandler.appendForecastData(
     df_cleaned_forecast,
     'thredbo'
 )
@@ -34,16 +51,13 @@ databaseHandler.writeForecastData(
 
 ### Perisher forecast interactions
 perisherHandler = PerisherHandler()
+
 forecast_soup = perisherHandler.getForecast(load_from_cache)
-
-# parse forecast soup
 df_parsed_forecast = perisherHandler.parseForecast(forecast_soup)
-
-# clean forecast & append meta-data
 df_cleaned_forecast = perisherHandler.cleanForecast(df_parsed_forecast)
 
 # store locally
-databaseHandler.writeForecastData(
+databaseHandler.appendForecastData(
     df_cleaned_forecast,
     'perisher'
 )
