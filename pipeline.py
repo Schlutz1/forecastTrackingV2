@@ -13,7 +13,10 @@ import os
 
 # globals
 _id = 'pipeline.py'
-load_from_cache = False # use this for testing
+run_pipeline = True 
+load_from_cache = False
+
+# instantiate classes
 databaseHandler = DatabaseHandler()
 
 
@@ -30,25 +33,26 @@ pipeline_config = {
 }
 
 # iterate over endpoints
-for endpoint, config in pipeline_config.items():
+if run_pipeline:
+    for endpoint, config in pipeline_config.items():
 
-    # define handler
-    handler = config['handler']
+        # define handler
+        handler = config['handler']
 
-    # scrape soup
-    forecast_soup = handler.getForecast(load_from_cache)
-    
-    # parse soup into dataframe
-    df_parsed_forecast = handler.parseForecast(forecast_soup)
-    
-    # clean dataframe
-    df_cleaned_forecast = handler.cleanForecast(df_parsed_forecast)
+        # scrape soup
+        forecast_soup = handler.getForecast(load_from_cache)
+        
+        # parse soup into dataframe
+        df_parsed_forecast = handler.parseForecast(forecast_soup)
+        
+        # clean dataframe
+        df_cleaned_forecast = handler.cleanForecast(df_parsed_forecast)
 
-    # store locally
-    databaseHandler.appendForecastData(
-        df_cleaned_forecast,
-        config['table']
-    )
+        # store locally
+        databaseHandler.appendToTable(
+            df_cleaned_forecast,
+            config['table']
+        )
 
 
 ### Generate final export

@@ -21,7 +21,7 @@ class DatabaseHandler():
         self._id = "databaseHandler"
         self.conn = sqlite3.connect(os.path.join(cache_path, db))
 
-    def appendForecastData(self, df, table):
+    def appendToTable(self, df, table):
         # appends scrapped forecast data to database
         
         df.to_sql(
@@ -30,7 +30,7 @@ class DatabaseHandler():
             if_exists = 'append'
         )
 
-    def overwriteForecastData(self, df, table, overwrite_bool = False):
+    def overwriteTable(self, df, table, overwrite_bool = False):
         # overwrites table in db
         # :param df: dataframe to write
         # :param table: table to write to
@@ -48,7 +48,7 @@ class DatabaseHandler():
         else:
             print(f"{self._id}: Warning, did not overwrite {table} table")
 
-    def getForecastData(self, table, min_date = None, max_date = None):
+    def getTable(self, table, min_date = None, max_date = None):
         # returns forecast data, optionally with a selected range
         # :param table: table to select from
         # :param (optional) min_date: minimum date to select from
