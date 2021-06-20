@@ -17,7 +17,7 @@ load_from_cache = False # use this for testing
 databaseHandler = DatabaseHandler()
 
 
-# define endpoints hit in pipeline
+# define endpoints in pipeline
 pipeline_config = {
     "thredbo": {
         "handler": ThredboHandler(),
@@ -49,36 +49,6 @@ for endpoint, config in pipeline_config.items():
         df_cleaned_forecast,
         config['table']
     )
-
-
-
-# ### Thredbo forecast interactions
-# thredboHandler = ThredboHandler()
-
-# # get current forecast data, optionally load from cache
-# forecast_soup = thredboHandler.getForecast(load_from_cache)
-# df_parsed_forecast = thredboHandler.parseForecast(forecast_soup)
-# df_cleaned_forecast = thredboHandler.cleanForecast(df_parsed_forecast)
-
-# # # store locally
-# databaseHandler.appendForecastData(
-#     df_cleaned_forecast,
-#     'thredbo'
-# )
-
-
-# ### Perisher forecast interactions
-# perisherHandler = PerisherHandler()
-
-# forecast_soup = perisherHandler.getForecast(load_from_cache)
-# df_parsed_forecast = perisherHandler.parseForecast(forecast_soup)
-# df_cleaned_forecast = perisherHandler.cleanForecast(df_parsed_forecast)
-
-# # store locally
-# databaseHandler.appendForecastData(
-#     df_cleaned_forecast,
-#     'perisher'
-# )
 
 
 ### Generate final export
