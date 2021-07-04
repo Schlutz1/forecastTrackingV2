@@ -405,6 +405,20 @@ index,date,weather,prob_of_precip,likely_snow,snow_level,wind,visibility,likely_
 11,WedJul 14,Cloudy. Snow. Windy,60%,<2cm,1300,Strong NW,Poor,2,2021-07-14 00:00:00,PerisherHandler,14-day,2021-07-03 22:59:55.238954,,,,,,,,,
 12,ThuJul 15,Snow showers,60%,2-5cm,1600,Strong NW,Poor,3.5,2021-07-15 00:00:00,PerisherHandler,14-day,2021-07-03 22:59:55.238954,,,,,,,,,
 13,FriJul 16,Snow showers clearing,40%,<2cm,1600,Fresh NW,Improving,2,2021-07-16 00:00:00,PerisherHandler,14-day,2021-07-03 22:59:55.238954,,,,,,,,,
+0,SunJul 04,Cloudy. Snow showers. Breezy,90%,5-10cm,800,Strong NW,Poor,7.5,2021-07-04 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+1,MonJul 05,Snow showers clearing,40%,<2cm,1300,W,Improving,2,2021-07-05 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+2,TueJul 06,Mostly cloudy,10%,Nil,,NW/SW,Good,0,2021-07-06 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+3,WedJul 07,Mostly sunny,10%,Nil,,S to NE,Excellent,0,2021-07-07 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+4,ThuJul 08,Mostly sunny,15%,Nil,,NE/N,Excellent,0,2021-07-08 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+5,FriJul 09,"Cloudy. Mix of rain, snow, sleet",60%,2-5cm,1300,Fresh NE  to NW,Deteriorating,3.5,2021-07-09 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+6,SatJul 10,Possible snow showers. Breezy,40%,2-5cm,1200,Fresh NW,Fair,3.5,2021-07-10 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+7,SunJul 11,Possible snow showers. Breezy,40%,2-5cm,900,Fresh NW,Fair,3.5,2021-07-11 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+8,MonJul 12,Mostly cloudy,10%,Nil,,Fresh NW,Good,0,2021-07-12 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+9,TueJul 13,Cloudy. Snow showers,60%,2-5cm,1300,Fresh NW,Fair,3.5,2021-07-13 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+10,WedJul 14,Cloudy. Snow. Windy,60%,<2cm,1300,Strong NW,Poor,2,2021-07-14 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+11,ThuJul 15,Snow showers,60%,2-5cm,1600,Strong NW,Poor,3.5,2021-07-15 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+12,FriJul 16,Snow showers clearing,40%,<2cm,1600,Fresh NW,Improving,2,2021-07-16 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
+13,SatJul 17,Mostly sunny,10%,Nil,,Fresh NW,Good,0,2021-07-17 00:00:00,PerisherHandler,14-day,2021-07-04 10:18:14.206644,,,,,,,,,
 0,"Tomorrow, 14 Jun",Cloudy. Medium (40%) chance of showers or snow. Light winds.,,,,,,,2021-06-14 00:00:00,ThredboHandler,7-day,2021-06-19 23:16:06.518840,0.0,Max 2°C,Min -1°C,1800m 30%,1400m 0%,1000m 0%,30,0,0
 1,"Tuesday, 15 Jun",Partly cloudy. Light winds becoming northwesterly 15 to 20 km/h in the evening.,,,,,,,2021-06-15 00:00:00,ThredboHandler,7-day,2021-06-19 23:16:06.518840,1.0,Max 3°C,Min -2°C,1800m 10%,1400m 0%,1000m 0%,10,0,0
 2,"Wednesday, 16 Jun","Partly cloudy. Very high (90%) chance of showers or snow, most likely in the afternoon and evening. The chance of a thunderstorm in the afternoon. Winds northwesterly 20 to 30 km/h increasing to 25 to 35 km/h during the morning.",,,,,,,2021-06-16 00:00:00,ThredboHandler,7-day,2021-06-19 23:16:06.518840,2.0,Max 3°C,Min -3°C,1800m 70%,1400m 20%,1000m 0%,70,20,0
@@ -597,3 +611,9 @@ index,date,weather,prob_of_precip,likely_snow,snow_level,wind,visibility,likely_
 4,"Thursday, 08 Jul",Partly cloudy. Winds northerly 15 to 25 km/h turning northwesterly 20 to 30 km/h during the day.,,,,,,,2021-07-08 00:00:00,ThredboHandler,7-day,2021-07-03 22:59:54.763490,,Max 1°C,Min -7°C,,,,,,
 5,"Friday, 09 Jul",Cloudy. Medium (60%) chance of showers. Snow possible above 1900 metres. Winds northwesterly 25 to 40 km/h.,,,,,,,2021-07-09 00:00:00,ThredboHandler,7-day,2021-07-03 22:59:54.763490,,Max 1°C,Min -6°C,,,,,,
 6,"Saturday, 10 Jul","Partly cloudy. Medium (60%) chance of snow showers, most likely during the morning. Winds west to northwesterly 35 to 55 km/h.",,,,,,,2021-07-10 00:00:00,ThredboHandler,7-day,2021-07-03 22:59:54.763490,,Max 1°C,Min -4°C,,,,,,
+0,"Tomorrow, 05 Jul","Partly cloudy. Slight (30%) chance of a snow shower, most likely in the early morning. Winds westerly 25 to 40 km/h.",,,,,,,2021-07-05 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max -1°C,Min -5°C,1800m 40%,1400m 20%,1000m 0%,40,20,0
+1,"Tuesday, 06 Jul",Partly cloudy. Winds northwest to southwesterly 15 to 25 km/h tending south to southwesterly 15 to 20 km/h during the morning then becoming light during the day.,,,,,,,2021-07-06 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max -1°C,Min -7°C,1800m 10%,1400m 10%,1000m 0%,10,10,0
+2,"Wednesday, 07 Jul",Partly cloudy. Light winds becoming northerly 15 to 25 km/h during the afternoon.,,,,,,,2021-07-07 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max 1°C,Min -8°C,1800m 0%,1400m 0%,1000m 0%,0,0,0
+3,"Thursday, 08 Jul",Partly cloudy. Winds northerly 15 to 25 km/h turning northwesterly 20 to 30 km/h during the day.,,,,,,,2021-07-08 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max 1°C,Min -7°C,,,,,,
+4,"Friday, 09 Jul",Cloudy. Medium (60%) chance of showers. Snow possible above 1900 metres. Winds northwesterly 25 to 40 km/h.,,,,,,,2021-07-09 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max 1°C,Min -6°C,,,,,,
+5,"Saturday, 10 Jul","Partly cloudy. Medium (60%) chance of snow showers, most likely during the morning. Winds west to northwesterly 35 to 55 km/h.",,,,,,,2021-07-10 00:00:00,ThredboHandler,7-day,2021-07-04 10:18:13.671400,,Max 1°C,Min -4°C,,,,,,
